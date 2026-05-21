@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Untuk Kamu ❤️</title>
+
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body{
+        background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+        height:100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        overflow:hidden;
+    }
+
+    .card{
+        background:white;
+        width:90%;
+        max-width:500px;
+        border-radius:25px;
+        padding:40px;
+        text-align:center;
+        box-shadow:0 10px 30px rgba(0,0,0,0.2);
+        position:relative;
+    }
+
+    h1{
+        margin-bottom:20px;
+        color:#ff4d6d;
+    }
+
+    p{
+        font-size:20px;
+        margin-bottom:30px;
+    }
+
+    button{
+        border:none;
+        padding:14px 28px;
+        border-radius:15px;
+        cursor:pointer;
+        font-size:18px;
+        transition:0.3s;
+    }
+
+    .next-btn,
+    .yes-btn{
+        background:#ff4d6d;
+        color:white;
+    }
+
+    .next-btn:hover,
+    .yes-btn:hover{
+        transform:scale(1.05);
+    }
+
+    .no-btn{
+        background:#444;
+        color:white;
+        position:absolute;
+    }
+
+    img{
+        width:220px;
+        border-radius:20px;
+        margin-bottom:20px;
+    }
+
+    .hidden{
+        display:none;
+    }
+</style>
+</head>
+<body>
+
+<div class="card">
+
+    <!-- STEP 1 -->
+    <div id="step1">
+        <h1>Halo 👋</h1>
+        <p>Aku ada sesuatu buat kamu...</p>
+        <button class="next-btn" onclick="nextStep(2)">
+            Lanjut
+        </button>
+    </div>
+
+    <!-- STEP 2 -->
+    <div id="step2" class="hidden">
+        <h1>Aku Mau Resign 😔</h1>
+        <p>
+            Resign jadi orang biasa... <br>
+            Mau jadi orang spesial buat kamu aja 😭❤️
+        </p>
+
+        <button class="next-btn" onclick="nextStep(3)">
+            Lanjut
+        </button>
+    </div>
+
+    <!-- STEP 3 -->
+    <div id="step3" class="hidden">
+        
+        <!-- GANTI FOTO DI SINI -->
+        <img src="https://i.pinimg.com/736x/7f/7c/e2/7f7ce2b08d9844e05f4d73874fd56df5.jpg">
+
+        <h1>Sayang Aku Ga? 🥺</h1>
+
+        <button class="yes-btn" onclick="sayang()">
+            Sayang ❤️
+        </button>
+
+        <button class="no-btn" id="noBtn">
+            Nggak 😈
+        </button>
+    </div>
+
+    <!-- ENDING -->
+    <div id="ending" class="hidden">
+        <h1>YEYYYY ❤️🎉</h1>
+        <p>
+            Aku tau kok kamu sayang 😌 <br><br>
+            Semoga harimu selalu bahagia ✨
+        </p>
+    </div>
+
+</div>
+
+<script>
+
+function nextStep(step){
+    document.querySelectorAll(".card > div")
+        .forEach(div => div.classList.add("hidden"));
+
+    document.getElementById("step" + step)
+        .classList.remove("hidden");
+}
+
+function sayang(){
+    document.querySelectorAll(".card > div")
+        .forEach(div => div.classList.add("hidden"));
+
+    document.getElementById("ending")
+        .classList.remove("hidden");
+}
+
+
+// tombol kabur
+const noBtn = document.getElementById("noBtn");
+
+function moveButton(){
+
+    const maxX = window.innerWidth - 150;
+    const maxY = window.innerHeight - 100;
+
+    const randomX = Math.random() * maxX;
+    const randomY = Math.random() * maxY;
+
+    noBtn.style.left = randomX + "px";
+    noBtn.style.top = randomY + "px";
+}
+
+// kabur pas mouse mendekat
+noBtn.addEventListener("mouseover", moveButton);
+
+// kalau somehow berhasil diklik
+noBtn.addEventListener("click", () => {
+    alert("Yakin??? Jawaban salah 😭");
+    moveButton();
+});
+
+</script>
+
+</body>
+</html>
